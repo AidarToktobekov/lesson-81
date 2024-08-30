@@ -12,7 +12,7 @@ const port = 8000;
 app.use(cors(config.corsOptions));
 app.use(express.json());
 app.use(express.static('converter'));
-app.use('/converter', converterRouter);
+app.use('/', converterRouter);
 // app.get('/my-link/:shortUrl', async (req, res) => {
 //     const url = await Converter.findById(req.params.shortUrl);
 //     if (url){

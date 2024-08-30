@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 
 const converterRouter = express.Router();
 
-converterRouter.get('/', async (req, res, next) => {
+converterRouter.get('/converter', async (req, res, next) => {
     try {
         const converter = await Converter.find();
         return res.send(converter);
@@ -27,21 +27,12 @@ converterRouter.get('/:shortUrl', async (req, res, next) => {
     }
 });
 
-converterRouter.post('/', async (req, res, next) => {
+converterRouter.post('/converter', async (req, res, next) => {
     try {
-        const alphabet = "qwertyuiopasdfghjklzxcvbnm";
-        let shortUrl = "";
-        while (shortUrl.length < 4) {
-            shortUrl += alphabet[Math.floor(Math.random() * alphabet.length)];
-        }
-        if (shortUrl.length === 4) {
-            while (shortUrl.length < 7) {
-                shortUrl += alphabet[Math.floor(Math.random() * alphabet.length)].toUpperCase();
-            }
-        }
+
         const urlMutation: UrlMutation = {
             originalUrl: req.body.originalUrl,
-            shortUrl: shortUrl,
+            shortUrl: req.body.shortUrl,
         };
 
         const converter = new Converter(urlMutation);
