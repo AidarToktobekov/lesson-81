@@ -6,6 +6,4 @@ export interface ConverterUrl {
     originalUrl: string;
 }
 
-export interface UrlMutation {
-    originalUrl: string;
-}
+export type UrlMutation = Omit<ConverterUrl, '_id'>;
